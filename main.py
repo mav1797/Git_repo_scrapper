@@ -19,17 +19,14 @@ header=[filter_json_to_csv.name,filter_json_to_csv.description,
                                                     filter_json_to_csv.forks_count]
 
 def api_pages():
-    print('start')
     global page_num
     try:
-        print('inside')
         api_page_obj = requests.get(
             f'https://api.github.com/search/repositories?page={page_num}&q=+{filter.filter_2}:>=200+language:{filter.filter_language}&order=desc').json()
         for data in api_page_obj['items']:
             page_content.append(data)
-        print(page_num)
         page_num += 1
-        # time.sleep(5)
+        # time.sleep(5)   #optional
         api_pages()
 
     except KeyError as k:
@@ -76,8 +73,7 @@ def json_to_csv():
                                item[filter_json_to_csv.forks_count]])
     print(f'Check {file_name} file')
 
-
+print('start)
 api_pages()
 json_to_csv()
-# print(page_content)
 print('END')
