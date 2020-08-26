@@ -73,7 +73,7 @@ def json_to_csv():
                                item[filter_json_to_csv.forks_count]])
     print(f'Check {file_name} file')
 
-print('start)
+print('start')
 api_pages()
 json_to_csv()
 print('END')
