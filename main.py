@@ -12,7 +12,11 @@ print(f'Current Path:-{file_path}')
 page_content = []
 page_num: int = 1
 file_name = "new_output.csv"
-
+header=[filter_json_to_csv.name,filter_json_to_csv.description,
+                                                    filter_json_to_csv.html_url,
+                                                    filter_json_to_csv.watchers_count,
+                                                    filter_json_to_csv.stargazers_count,
+                                                    filter_json_to_csv.forks_count]
 
 def api_pages():
     print('start')
@@ -40,11 +44,7 @@ def header_check():
         r_csv = csv.reader(file)
         r_csv = list(r_csv)
         if file.tell()==0:  # To check if file is empty or old , IF empty then add HEADERS
-            d_csv = csv.DictWriter(file,fieldnames=[filter_json_to_csv.name,filter_json_to_csv.description,
-                                                    filter_json_to_csv.html_url,
-                                                    filter_json_to_csv.watchers_count,
-                                                    filter_json_to_csv.stargazers_count,
-                                                    filter_json_to_csv.forks_count])
+            d_csv = csv.DictWriter(file,fieldnames=header)
             d_csv.writeheader()
             print('Header Adder')
         elif header==r_csv[0]:  # if file is not empty , compare 1st row of file with header and if same DO NOTHING
